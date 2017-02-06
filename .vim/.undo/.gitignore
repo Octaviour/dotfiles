@@ -1,0 +1,4 @@
+# ignore everything in this directory except this file
+# provides a workaround for not being able to include empty directories in git
+*
+!.gitignore
