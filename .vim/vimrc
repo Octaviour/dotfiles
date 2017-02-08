@@ -180,12 +180,6 @@ endif
 command! RemoveTrailingSpace call pvs#removetrailingspace()
 
 " autocommands {{{1
-" change directory {{{2
-augroup PvsChdir
-    autocmd!
-    autocmd BufEnter * call pvs#chdir()
-augroup END
-
 
 " global mappings {{{1
 " use space as leader
@@ -196,6 +190,9 @@ let maplocalleader=' '
 " jump between files
 nnoremap <leader>b :buffer 
 nnoremap <leader>f :find 
+
+" change directory to current file's
+nnoremap <leader>cd :lcd %:h<cr>:pwd<cr>
 
 " move display line
 nnoremap j gj
