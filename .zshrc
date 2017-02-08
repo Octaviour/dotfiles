@@ -26,6 +26,9 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 DEFAULT_USER=`whoami`
 
+# start tmux
+[[ $TERM != "screen" ]] && exec tmux
+
 # aliasses
 alias aguu="sudo apt-get update && sudo apt-get upgrade -y"
 alias gitc="git commit"
