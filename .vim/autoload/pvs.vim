@@ -246,6 +246,6 @@ endfunction
 " open file browser {{{1
 function! pvs#openfilebrowser()
     if has('win32')
-        ! cmd
+        execute 'Dispatch explorer "'.getcwd().'"'
     endif
 endfunction
