@@ -194,6 +194,9 @@ nnoremap <leader>f :find
 " change directory to current file's
 nnoremap <leader>cd :lcd %:h<cr>:pwd<cr>
 
+" open file browser at location
+nnoremap <leader>E :call pvs#openfilebrowser()<cr>
+
 " move display line
 nnoremap j gj
 nnoremap k gk

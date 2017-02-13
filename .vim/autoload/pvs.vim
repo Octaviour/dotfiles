@@ -232,3 +232,10 @@ function! pvs#texcompile()
     let l:cmd = 'Dispatch pdflatex -halt-on-error -interaction=nonstopmode -synctex=1 -aux-directory='
     execute l:cmd.shellescape(l:outdir).' '.shellescape(l:texfile)
 endfunction
+
+" open file browser {{{1
+function! pvs#openfilebrowser()
+    if has('win32')
+        ! cmd
+    endif
+endfunction
