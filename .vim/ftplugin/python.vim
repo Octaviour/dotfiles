@@ -1,1 +1,1 @@
-nnoremap <buffer> <localleader>c :write<cr>:! python %<cr>
+nnoremap <buffer> <localleader>c :write<cr>:! python "%"<cr>
