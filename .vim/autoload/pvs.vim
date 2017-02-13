@@ -233,6 +233,16 @@ function! pvs#texcompile()
     execute l:cmd.shellescape(l:outdir).' '.shellescape(l:texfile)
 endfunction
 
+" minimize window {{{1
+function! pvs#windowminimize()
+    let l:windowsize = &lines
+    let l:filesize = line('$')
+    if l:windowsize > l:filesize
+        execute l:filesize.'wincmd _'
+        setlocal winfixheight
+    endif
+endfunction
+
 " open file browser {{{1
 function! pvs#openfilebrowser()
     if has('win32')

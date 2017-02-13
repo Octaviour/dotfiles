@@ -209,6 +209,7 @@ nnoremap <c-k> :wincmd k<cr>
 nnoremap <c-l> :wincmd l<cr>
 nnoremap <c-h> :wincmd h<cr>
 nnoremap <c-w><c-w> :wincmd p<cr>
+nnoremap <c-w>m :call pvs#windowminimize()<cr>
 
 " make Y sane
 nnoremap Y y$
