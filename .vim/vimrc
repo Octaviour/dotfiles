@@ -77,6 +77,8 @@ set completeopt=longest,menu
 " keep undo history in file
 set undofile
 
+" assume LaTeX files over TeX
+let g:tex_flavor='latex'
 " environment dependent settings {{{1
 " set color theme
 colorscheme solarized
