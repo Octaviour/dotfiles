@@ -177,6 +177,8 @@ if executable('sumatrapdf')
     let g:vimtex_view_general_options_latexmk = '-reuse-instance'
 endif
 
+" Tabularize {{{2
+nnoremap <leader>t :Tabularize /\v
 " commands {{{1
 " remove trailing whitespace
 command! RemoveTrailingSpace call pvs#removetrailingspace()
