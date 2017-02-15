@@ -183,6 +183,9 @@ nnoremap <leader>t :Tabularize /\v
 " remove trailing whitespace
 command! RemoveTrailingSpace call pvs#removetrailingspace()
 
+" open scratchpad
+command! ScratchPad call pvs#opentemporarybuffer()
+
 " autocommands {{{1
 
 " global mappings {{{1
@@ -246,9 +249,6 @@ nnoremap gl `[v`]
 
 " change case of symbols
 nnoremap ~ :call pvs#changecase()<cr>
-
-" open temporary buffer
-nnoremap <leader>t :call pvs#opentemporarybuffer()<cr>
 
 " remove trailing whitespact
 nnoremap <leader>rts :call pvs#removetrailingspace()<cr>
