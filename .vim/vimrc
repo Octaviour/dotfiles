@@ -264,6 +264,9 @@ if has('gui')
     endif
 endif
 
+" general purpose mapping
+nnoremap <C-cr> :call pvs#quickmap('<cr>')<cr>
+
 " map in( etc to next brace {{{2
 onoremap in( :call pvs#selectclosestbracket('(', 'i(')<cr>
 onoremap in) :call pvs#selectclosestbracket('(', 'i)')<cr>

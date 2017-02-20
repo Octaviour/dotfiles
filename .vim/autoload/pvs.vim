@@ -249,3 +249,9 @@ function! pvs#openfilebrowser()
         execute 'Dispatch explorer "'.getcwd().'"'
     endif
 endfunction
+
+" map custom, temporary mapping {{{1
+function! pvs#quickmap(keyname)
+    let l:cmd = 'nnoremap <buffer> '.a:keyname.' '
+    execute l:cmd.input(l:cmd)
+endfunction
