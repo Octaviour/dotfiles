@@ -1,2 +1,2 @@
 " TODO OS independend
-nnoremap <buffer> <localleader>c :write<cr>:!start cmd /c python "%"<cr>
+nnoremap <buffer> <localleader>cc :write<cr>:!start cmd /c python "%"<cr>

@@ -16,7 +16,10 @@ function! pvs#softwrap(width)
     " open new buffer
     vnew
     setfiletype MARGIN
-    set buftype=nofile
+    setlocal buftype=nofile
+    setlocal nonumber
+    setlocal norelativenumber
+    normal 110Ogg
     wincmd p
     execute 'vertical res '.(80+&numberwidth)
     let w:pvs_softwrap = 1
@@ -94,6 +97,16 @@ function! pvs#selectclosestbracket(brackets, command)
 
     execute 'normal! ' . l:next_brace . '|'
     execute 'normal! v' . a:command
+endfunction
+
+" delete surrounding function {{{1
+function! pvs#deletefunction()
+    normal diw
+    " TODO only remove \ in latex files
+    if getline('.')[col('.')-2] == '\'
+        normal hx
+    endif
+    execute 'normal ds'.getline('.')[col('.')-1]
 endfunction
 
 " open temporary buffer {{{1
@@ -255,3 +268,21 @@ function! pvs#quickmap(keyname)
     let l:cmd = 'nnoremap <buffer> '.a:keyname.' '
     execute l:cmd.input(l:cmd)
 endfunction
+
+" prompt for search string and select from old files {{{1
+function! pvs#recentfiles()
+    let l:search = input('Old files to list: ')
+    " terminate line
+    echo ' '
+    execute 'filter /\v'.l:search.'/ browse oldfiles'
+endfunction
+"
+"{{{1 Quickly map a key to some command
+function! pvs#quickmap(keyname, ...)
+    let mapping = input(':nnoremap '.a:keyname.' :')
+    if mapping == ''
+        execute 'nunmap '.a:keyname
+    else
+        execute 'nnoremap '.a:keyname.' :'.mapping.'<cr>'
+    endif
+endfunction "}}}

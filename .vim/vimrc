@@ -66,7 +66,7 @@ set autoread
 
 " tab completion of commands
 set wildmenu
-set wildmode=list:longest,full
+set wildmode=list:full
 
 " search entire subtree for files
 set path+=**
@@ -152,8 +152,8 @@ endif
 
 " Fugitive {{{2
 nnoremap <leader>W :Gwrite<cr>
-nnoremap <leader>gc :Gcommit<cr>
-nnoremap <leader>gs :Gstatus<cr>
+nnoremap gc :Gcommit<cr>
+nnoremap gs :Gstatus<cr>
 
 " Syntastic {{{2
     set statusline+=%#warningmsg#
@@ -186,6 +186,13 @@ command! RemoveTrailingSpace call pvs#removetrailingspace()
 " open scratchpad
 command! ScratchPad call pvs#opentemporarybuffer()
 
+" grep for regex in pwd and current file extension
+command! -nargs=1 FTgrep execute 'vimgrep /\v<args>/ *.'.expand('%:e')
+
+" store command
+nnoremap <c-return> :call pvs#quickmap('<lt>return>')<cr>
+nnoremap <c-bs> :call pvs#quickmap('<lt>bs>')<cr>
+
 " autocommands {{{1
 
 " global mappings {{{1
@@ -195,8 +202,9 @@ let mapleader=' '
 let maplocalleader=' '
 
 " jump between files
-nnoremap <leader>b :buffer 
-nnoremap <leader>f :find 
+nnoremap <leader>b :ls<cr>:buffer<space>
+nnoremap <leader>f :find<space>
+nnoremap <leader>o :call pvs#recentfiles()<cr>
 
 " change directory to current file's
 nnoremap <leader>cd :lcd %:h<cr>:pwd<cr>
@@ -248,7 +256,7 @@ nnoremap <leader>ed :edit<space>
 nnoremap gl `[v`]
 
 " change case of symbols
-nnoremap ~ :call pvs#changecase()<cr>
+nnoremap ~ :call pvs#changecase()<cr>l
 
 " remove trailing whitespact
 nnoremap <leader>rts :call pvs#removetrailingspace()<cr>
@@ -260,7 +268,8 @@ nnoremap <leader><c-a> :call pvs#incrementsubsequentlines()<cr>
 if has('gui')
     if has('win32')
         " running 32 bit or 64 bit windows
-        map <leader>C :! cmd<cr>
+        " TODO make cygwin start in correct path
+        map <leader>C :silent !start cmd<cr>
     endif
 endif
 
@@ -289,3 +298,8 @@ onoremap an] :call pvs#selectclosestbracket('[', 'a]')<cr>
 onoremap an< :call pvs#selectclosestbracket('<', 'a<')<cr>
 onoremap an> :call pvs#selectclosestbracket('<', 'a>')<cr>
 
+" source functions that are under development {{{1
+let playgroundpath = fnamemodify(resolve(expand('<sfile>:p')), ':h').'/playground.vim'
+if filereadable(playgroundpath)
+    execute('source '.playgroundpath)
+endif
